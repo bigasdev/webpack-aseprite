@@ -5,6 +5,9 @@
 ## 📚 About
 🚀 Lightweight and easy to use importer to work on webpack using aseprite assets.
 
+## 💾 Installation
+Simply add the [asset](src/assets.js) file to your source folder and import it on your webpack index.
+
 ## 🔎 Features
 - Its just one file
 - Can load and handle multiple atlas files
@@ -12,7 +15,7 @@
 
 ## 💻 Usage
 Use the export feature on aseprite (Ctrl+E) to export your atlas.png with the json in your project folder
-```jscript
+```js
 //Import the assets.js
 
 import { asepriteConfig } from './assets.js';
