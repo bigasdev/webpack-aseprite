@@ -9,6 +9,20 @@ var atlas = [{
     }]
 }];
 
+export class Asset{
+    constructor(atlas = 0, name = "item", x = 0, y = 0, size = 1){
+        this.atlas = atlas;
+        this.name = name;
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        let source;
+    }
+    getInfo(){
+        return {name:this.name, position:{x:this.x, y:this.y}, radius:{width:this.source.width, height:this.source.height}};
+    }
+}
+
 export function asepriteConfig(atlasImgs=[], json=[]){
     var i = 0;
     for (let index = 0; index < atlasImgs.length - 1; index++) {
@@ -34,12 +48,14 @@ export function asepriteConfig(atlasImgs=[], json=[]){
         }
         i++;
     })
+    console.log(atlas);
 }
 
-export const createAsset = (info, ctx, callback) =>{
-    var a = atlas[info.atlas].images.find((e)=>e.name === info.name);
+export const createAsset = (asset, ctx) =>{
+    var a = atlas[asset.atlas].images.find((e)=>e.name === asset.name);
     if(a){
-        ctx.drawImage(atlas[info.atlas].src, a.x,a.y,a.width,a.height,info.x,info.y,a.width*info.size,a.height*info.size);
-        callback(info, a);
+        ctx.drawImage(atlas[asset.atlas].src, a.x,a.y,a.width,a.height,asset.x,asset.y,a.width*asset.size,a.height*asset.size);
+        asset.source = a;
     }
+    return asset;
 }
